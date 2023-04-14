@@ -24,10 +24,10 @@ def is_going_to_rain(lat: str, lon: str, appikey: str) -> bool:
     URL = "https://api.openweathermap.org/data/2.5/forecast"
 
     weather_response = requests.request("GET", url=URL, params=parameters)
-    data = weather_response.json()["list"][:3]
-    weather_next_three_hours = [weather["weather"][0]["id"] for weather in data]
+    data = weather_response.json()["list"][:12]
+    weather_next_twelve_hours = [weather["weather"][0]["id"] for weather in data]
 
-    for weather in weather_next_three_hours:
+    for weather in weather_next_twelve_hours:
         if weather <= rain_condition:
             return True
 
